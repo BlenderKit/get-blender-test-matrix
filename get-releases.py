@@ -116,6 +116,5 @@ def get_daily_builds(jobs: list):
 if __name__ == "__main__":
     get_daily_builds(jobs)
     matrix = {"include": jobs}
-    print(f"matrix={matrix}")
-    with open('.github/actions/make-test-matrix/matrix.json', 'w') as f:
-        json.dump(matrix, f)
+    #print(f"matrix={matrix}")
+    print(matrix)

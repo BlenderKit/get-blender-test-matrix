@@ -9,19 +9,19 @@ runs:
   using: 'composite'
   steps:
     - name: Setup Python
-      uses: actions/setup-python@v2
+    - uses: actions/setup-python@v4
       with:
-        python-version: 3.9
+        python-version: 3.10
         
     - name: Install dependencies
       run: |
         pip install requests
-      
-    - name: Run script and generate matrix
-      id: run-script
+
+    - name: Generate Matrix
       run: |
-        python .github/actions/make-test-matrix/script.py
-        
-    - name: Set matrix output
-      id: set-matrix
-      run: echo "::set-output name=matrix::$(echo $(cat .github/actions/make-test-matrix/matrix.json))"
+        MATRIX=$(python ./path-to-your-script.py)
+        echo "MATRIX_OUTPUT=$MATRIX" >> $GITHUB_ENV
+
+    - name: Set action output
+      id: set-output
+      run: echo "::set-output name=matrix::$MATRIX_OUTPUT"

@@ -12,7 +12,4 @@ runs:
       uses: actions/checkout@v4
       with:
         repository: 'blenderkit/get-blender-test-matrix'
-
-    - name: Generate Matrix
-      shell: bash
       run: python ${{ github.workspace }}/get-releases.py >> $GITHUB_OUTPUT

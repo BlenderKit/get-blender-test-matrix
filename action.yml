@@ -16,7 +16,7 @@ runs:
     - name: Generate Matrix
       shell: bash
       run: |
-        MATRIX=$(python get-blender-test-matrix/get-releases.py)
+        MATRIX=$(python ${{ github.workspace }}/get-releases.py)
         echo "MATRIX_OUTPUT=$MATRIX" >> $GITHUB_ENV
 
     - name: Set action output

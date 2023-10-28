@@ -6,13 +6,15 @@ outputs:
     value: ${{ steps.set-matrix.outputs.matrix }}
 runs:
   using: 'composite'
-  
+
   steps:
     - name: Generate Matrix
+      shell: bash
       run: |
         MATRIX=$(python ./path-to-your-script.py)
         echo "MATRIX_OUTPUT=$MATRIX" >> $GITHUB_ENV
 
     - name: Set action output
+      shell: bash
       id: set-output
       run: echo "::set-output name=matrix::$MATRIX_OUTPUT"

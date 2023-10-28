@@ -8,10 +8,12 @@ runs:
   using: 'composite'
 
   steps:
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Generate Matrix
       shell: bash
       run: |
-        MATRIX=$(python ./path-to-your-script.py)
+        MATRIX=$(python get-releases.py)
         echo "MATRIX_OUTPUT=$MATRIX" >> $GITHUB_ENV
 
     - name: Set action output

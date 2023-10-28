@@ -15,11 +15,4 @@ runs:
 
     - name: Generate Matrix
       shell: bash
-      run: |
-        MATRIX=$(python ${{ github.workspace }}/get-releases.py)
-        echo "MATRIX_OUTPUT=$MATRIX" >> $GITHUB_ENV
-
-    - name: Set action output
-      shell: bash
-      id: set-output
-      run: echo "::set-output name=matrix::$MATRIX_OUTPUT"
+      run: python ${{ github.workspace }}/get-releases.py >> $GITHUB_OUTPUT

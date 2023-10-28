@@ -1,0 +1,27 @@
+name: 'Make Blender Test Matrix'
+description: 'Generates a test matrix based on recent Blender releases'
+inputs:
+outputs:
+  matrix:
+    description: 'The generated test matrix'
+    value: ${{ steps.set-matrix.outputs.matrix }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+        
+    - name: Install dependencies
+      run: |
+        pip install requests
+      
+    - name: Run script and generate matrix
+      id: run-script
+      run: |
+        python .github/actions/make-test-matrix/script.py
+        
+    - name: Set matrix output
+      id: set-matrix
+      run: echo "::set-output name=matrix::$(echo $(cat .github/actions/make-test-matrix/matrix.json))"
